@@ -1,13 +1,121 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .page-container{
+        @apply w-[90%] sm:w-full mx-auto container;
+    }
+
+    .btn{
+        @apply py-1 px-4 rounded-full text-sm text-white font-medium border-2 border-solid transition-colors;
+    }
+
+    .btn.alt{
+        @apply bg-error-color border-error-color shadow-lg shadow-error-color/50;
+    }
+
+    .banner-shadow{
+        @apply 
+            after:block 
+            after:content-['']
+            after:absolute 
+            after:bottom-0 
+            after:left-0 
+            after:w-full 
+            after:h-[30px] 
+            after:bg-gradient-to-b from-transparent to-zinc-900;
+    }
+
+    .banner-shadow.details{
+        @apply after:h-full after:top-0;
+    }
+
+    .banner-shadow.searcher{
+        @apply after:h-full after:top-0 after:bg-[linear-gradient(transparent_100px,#18181b_200px)];
+    }
+    
+    .scrolled{
+        @apply bg-black/90;
+    }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+    --header-size: 4rem;
+}
+
+body > #root{
+    display: grid;
+    grid-template-rows: auto min-content;
+    min-height: 100vh;
+    @apply bg-zinc-900;
+}
+
+html{
+    font-size: 0.8125rem;
+}
+
+@media screen and (min-width: 20rem){
+    html{
+        font-size: calc(0.8125rem + 0.1875 * ((100vw - 20rem) / 61.25));
+    }
+}
+
+@media screen and (min-width: 81.25rem){
+    html{
+        font-size: 1rem;
+    }
+}
+
+.slick-slide:not(:last-of-type) .film-card{
+    @apply mr-1;
+}
+
+.offcanvas.open{
+    @apply opacity-100 pointer-events-auto;
+}
+
+.banner-shadow.searcher{
+    background-size: 100%, auto;
+}
+
+.banner-shadow.details{
+    background-size: 100% auto;
+}
+
+.banner-shadow.details::after{
+    --shadow-start: 100px;
+    --shadow-end: 200px;
+    background-image: linear-gradient(transparent var(--shadow-start), #18181b var(--shadow-end));
+}
+
+@media screen and (min-width: 640px){
+    .banner-shadow.details::after{
+        --shadow-start: 200px;
+        --shadow-end: 250px;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .banner-shadow.details::after{
+        --shadow-start: 350px;
+        --shadow-end: 400px;
+    }
+}
+
+@media (pointer: fine){
+    .btn.hover-effect{
+        @apply hover:bg-white hover:text-error-color;
+    }
+}
+
+@media (pointer: fine){
+    .card-text-effect{
+        @apply group-hover:text-red-700;
+    }
+    
+    .card-back-effect{
+        @apply group-hover:opacity-100;
+    }
 }
