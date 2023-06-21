@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom'
 import MainLogo from '../common/MainLogo'
 
 const Footer = () => {
-    const firstColumnLinks = [ 'Home', 'Contact us', 'Teams of services', 'About us' ]
-    const secondColumnLinks = [ 'Live', 'FAQ', 'Premium', 'Privacy policy' ]
-    const thirdColumnLinks = [ 'You must watch', 'Recent release', 'Top IMDB' ]
+    const COLUMN_LINKS = [
+        [ 'Home', 'Contact us', 'Teams of services', 'About us' ],
+        [ 'Live', 'FAQ', 'Premium', 'Privacy policy' ],
+        [ 'You must watch', 'Recent release', 'Top IMDB' ]
+    ]
     return (
         <footer className="bg-[url('./assets/img/footer-bg.jpg')] bg-no-repeat bg-center bg-cover py-10 sm:py-16">
             <div className="page-container">
@@ -15,7 +17,7 @@ const Footer = () => {
                     <ul className="text-white font-semibold text-sm mt-8 grid grid-cols-3 gap-1">
                         <div>
                             {
-                                firstColumnLinks.map((link, index) => (
+                                COLUMN_LINKS[0].map((link, index) => (
                                     <li className="py-2" key={index}>
                                         <Link to="/">
                                             {link}
@@ -26,7 +28,7 @@ const Footer = () => {
                         </div>
                         <div>
                             {
-                                secondColumnLinks.map((link, index) => (
+                                COLUMN_LINKS[1].map((link, index) => (
                                     <li className="py-2" key={index}>
                                         <Link to="/">
                                             {link}
@@ -37,7 +39,7 @@ const Footer = () => {
                         </div>
                         <div>
                             {
-                                thirdColumnLinks.map((link, index) => (
+                                COLUMN_LINKS[2].map((link, index) => (
                                     <li className="py-2" key={index}>
                                         <Link to="/">
                                             {link}

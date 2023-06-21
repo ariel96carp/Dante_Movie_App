@@ -13,6 +13,15 @@ module.exports = {
             },
             screens: {
                 xs: '576px'
+            },
+            keyframes: {
+                loader: {
+                    '0%': { transform: 'scale(1.5)' },
+                    '100%': { transform: 'scale(0)' }
+                }
+            },
+            animation: {
+                'route-loader': '1s linear infinite loader'
             }
         }
     },

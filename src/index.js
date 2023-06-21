@@ -1,20 +1,24 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import { QueryClientProvider, QueryClient } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import App from './components/App'
-import store from './components/redux/store'
+import ScrollToTop from './components/common/ScrollToTop'
 import './index.css'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+const queryClient = new QueryClient({})
 root.render(
-    <React.StrictMode>
+    <StrictMode>
         <Router>
-            <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <ScrollToTop />
                 <App />
-            </Provider>
+                <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
         </Router>
-    </React.StrictMode>
+    </StrictMode>
 )

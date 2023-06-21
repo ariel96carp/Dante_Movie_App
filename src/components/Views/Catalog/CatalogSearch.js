@@ -1,15 +1,20 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 
 const CatalogSearch = () => {
-    const { category } = useParams()
+    const { category, keyword } = useParams()
     const navigate = useNavigate()
     const searchRef = useRef()
     const goToSearch = () => {
-        if (searchRef.current.value !== '') {
-            navigate(`/${category}/search/${searchRef.current.value}`)
+        if (searchRef.current.value.trim() !== '') {
+            navigate(`/${category}/search/${searchRef.current.value.trim()}`)
         }
     }
+    useEffect(() => {
+        if (searchRef.current.value.trim() !== '' && !keyword) {
+            searchRef.current.value = ''
+        }
+    }, [ category, keyword ])
     return (
         <div className="mb-8 w-[80%] md:w-1/2 lg:w-[30%] bg-black rounded-full pl-4 text-sm font-medium text-gray-200 flex gap-1 items-center">
             <input

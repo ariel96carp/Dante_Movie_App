@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import MainLogo from '../common/MainLogo'
-import OffCanvas from '../common/OffCanvas'
+import OffCanvas from './OffCanvas'
 
 const Header = () => {
     const headerRef = useRef()
     const offCanvasRef = useRef()
-    const menuItems = [ 'home', 'movies', 'series' ]
+    const MENU_ITEMS = [ 'home', 'movies', 'series' ]
     const openOffCanvas = () => {
         offCanvasRef.current.classList.toggle('open')
         const isOpen = offCanvasRef.current.classList.contains('open')
@@ -43,7 +43,7 @@ const Header = () => {
         return () => window.removeEventListener('resize', closeOffCanvasOnResize)
     }, [])
     return (
-        <header className="fixed top-0 left-0 w-full h-[var(--header-size)] z-40 transition-colors" ref={headerRef}>
+        <header className="fixed top-0 left-0 w-full h-[var(--header-size)] z-40 transition-[colors,height] duration-300" ref={headerRef}>
             <div className="page-container h-full">
                 <div className="flex justify-between items-center h-full">
                     <MainLogo />
@@ -66,7 +66,7 @@ const Header = () => {
                     <nav className="hidden sm:block">
                         <ul className="flex gap-4 font-medium text-white">
                             {
-                                menuItems.map((link, index) => (
+                                MENU_ITEMS.map((link, index) => (
                                     <li key={index}>
                                         <NavLink
                                             to={link !== 'home' ? `/${link}` : '/'}
@@ -75,6 +75,7 @@ const Header = () => {
                                                     ? 'relative after:absolute after:left-0 after:top-[115%] after:block after:w-full after:h-[2px] after:bg-error-color'
                                                     : undefined
                                             )}
+                                            end={link === 'home'}
                                         >
                                             {
                                                 link !== 'series'
@@ -90,7 +91,7 @@ const Header = () => {
                     <OffCanvas
                         ref={offCanvasRef}
                         closeMenu={openOffCanvas}
-                        menuItems={menuItems}
+                        menuItems={MENU_ITEMS}
                     />
                 </div>
             </div>

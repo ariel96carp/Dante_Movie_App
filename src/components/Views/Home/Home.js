@@ -1,35 +1,32 @@
-import { useContext, useEffect } from 'react'
-import MainBanner from './MainBanner'
-import FilmSlider from '../../common/FilmSlider'
-import VideoContext from '../../context/VideoContext'
+import { useContext } from 'react'
+import HeroSlider from './HeroSlider'
+import MovieSlider from '../../common/MovieSlider'
+import VideoContext from '../../../context/VideoContext'
 import TrailerModal from './TrailerModal'
 
 const Home = () => {
     const { openModal } = useContext(VideoContext)
-    useEffect(() => {
-        if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, [])
     return (
         <>
             {
                 openModal && <TrailerModal />
             }
-            <MainBanner />
-            <FilmSlider
+            <HeroSlider />
+            <MovieSlider
                 description="Upcoming movies"
-                type="Upcoming Movies"
+                endpoint="/movie/upcoming"
             />
-            <FilmSlider
+            <MovieSlider
                 description="Top rated movies"
-                type="Top Rated Movies"
+                endpoint="/movie/top_rated"
             />
-            <FilmSlider
+            <MovieSlider
                 description="Popular TV"
-                type="Popular Series"
+                endpoint="/tv/popular"
             />
-            <FilmSlider
+            <MovieSlider
                 description="Top rated TV"
-                type="Top Rated Series"
+                endpoint="/tv/top_rated"
             />
         </>
     )

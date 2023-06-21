@@ -28,21 +28,29 @@
             after:bg-gradient-to-b from-transparent to-zinc-900;
     }
 
-    .banner-shadow.details{
-        @apply after:h-full after:top-0;
-    }
-
     .banner-shadow.searcher{
         @apply after:h-full after:top-0 after:bg-[linear-gradient(transparent_100px,#18181b_200px)];
-    }
-    
-    .scrolled{
-        @apply bg-black/90;
     }
 }
 
 :root{
     --header-size: 4rem;
+}
+
+@media screen and (min-width: 640px) {
+    :root{
+        --header-size: 5rem;
+    }
+}
+
+.scrolled{
+    @apply bg-black/75;
+}
+
+@media screen and (min-width: 640px) {
+    .scrolled{
+        --header-size: 4rem;
+    }
 }
 
 body > #root{
@@ -76,32 +84,16 @@ html{
     @apply opacity-100 pointer-events-auto;
 }
 
+.offcanvas.open > nav{
+    @apply translate-x-0 transition-transform duration-200;
+}
+
 .banner-shadow.searcher{
     background-size: 100%, auto;
 }
 
-.banner-shadow.details{
-    background-size: 100% auto;
-}
-
-.banner-shadow.details::after{
-    --shadow-start: 100px;
-    --shadow-end: 200px;
-    background-image: linear-gradient(transparent var(--shadow-start), #18181b var(--shadow-end));
-}
-
-@media screen and (min-width: 640px){
-    .banner-shadow.details::after{
-        --shadow-start: 200px;
-        --shadow-end: 250px;
-    }
-}
-
-@media screen and (min-width: 768px){
-    .banner-shadow.details::after{
-        --shadow-start: 350px;
-        --shadow-end: 400px;
-    }
+.details-background{
+    @apply bg-cover bg-right-top bg-no-repeat bg-zinc-500 bg-blend-multiply;
 }
 
 @media (pointer: fine){
@@ -118,4 +110,28 @@ html{
     .card-back-effect{
         @apply group-hover:opacity-100;
     }
+}
+
+.loader-animation{
+    @apply 
+        w-2 
+        h-2 
+        rounded-full 
+        absolute 
+        top-0 
+        left-0 
+        bg-white
+        shadow-md 
+        shadow-white/30
+        scale-0
+        animate-route-loader;
+        animation-delay: calc(.08s * var(--num));
+}
+
+.slide-text{
+    @apply -translate-y-10 opacity-0;
+}
+
+.slide-text-animate{
+    @apply translate-y-0 opacity-100 transition-[transform,opacity] delay-150 md:delay-500 duration-500;
 }

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import errorImage from '../../assets/img/no-image.png'
 
-const FilmCard = ({
+const MovieCard = ({
     poster,
     title,
     name,
@@ -29,7 +29,7 @@ const FilmCard = ({
     </Link>
 )
 
-FilmCard.propTypes = {
+MovieCard.propTypes = {
     id: PropTypes.number.isRequired,
     poster: PropTypes.string,
     title: PropTypes.string,
@@ -37,4 +37,4 @@ FilmCard.propTypes = {
     inSlider: PropTypes.bool
 }
 
-export default FilmCard
+export default MovieCard

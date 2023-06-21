@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import { forwardRef } from 'react'
-import MainLogo from './MainLogo'
+import PropTypes from 'prop-types'
+import MainLogo from '../common/MainLogo'
 
 const OffCanvas = forwardRef(({ closeMenu, menuItems }, ref) => (
     <div
         className="fixed top-0 left-0 w-full h-[100vh] bg-black/50 z-50 opacity-0 pointer-events-none offcanvas transition-opacity"
         ref={ref}
     >
-        <nav className="fixed top-0 right-0 h-[100vh] w-[70%] xs:w-[60%] bg-white pt-6 px-8">
+        <nav
+            className="absolute top-0 right-0 h-full w-[70%] xs:w-[60%] bg-white pt-6 px-8 translate-x-full"
+        >
             <div className="flex items-center justify-between mb-10">
                 <MainLogo isLink={false} />
                 <button

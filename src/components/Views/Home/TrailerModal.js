@@ -1,9 +1,13 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import YouTube from 'react-youtube'
-import VideoContext from '../../context/VideoContext'
+import VideoContext from '../../../context/VideoContext'
 
 const TrailerModal = () => {
     const { setOpenModal, videoURL } = useContext(VideoContext)
+    const videoRef = useRef()
+    useEffect(() => {
+        videoRef.current.classList.add('!translate-y-0')
+    }, [])
     return (
         <div className="fixed top-0 left-0 w-full h-[100vh] bg-black/80 z-50">
             <button
@@ -23,7 +27,10 @@ const TrailerModal = () => {
                 </svg>
             </button>
             <div className="page-container flex justify-center items-center h-full">
-                <div className="w-full sm:w-[80%] lg:w-[70%] bg-zinc-900 p-2 sm:p-3">
+                <div
+                    className="w-full sm:w-[80%] lg:w-[70%] bg-zinc-900 p-2 sm:p-3 -translate-y-full transition-transform duration-300"
+                    ref={videoRef}
+                >
                     <YouTube
                         videoId={videoURL}
                         className="relative grid grid-cols-[repeat(16,1fr)] grid-rows-[repeat(9,1fr)] after:content-[''] after:block after:pb-[100%]"

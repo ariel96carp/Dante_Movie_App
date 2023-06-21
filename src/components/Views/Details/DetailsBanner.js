@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import PropTypes from 'prop-types'
 import CastCard from './CastCard'
-import TrailerSection from './TrailerSection'
+import MovieVideo from './MovieVideo'
 
 const DetailsBanner = ({
     title,
@@ -13,13 +13,14 @@ const DetailsBanner = ({
     credits,
     videos
 }) => (
-    <section
-        className="bg-no-repeat bg-cover bg-top bg-zinc-900 bg-blend-multiply relative banner-shadow details"
-        style={{ backgroundImage: `url('${process.env.REACT_APP_IMAGE_URL}${background}')` }}
-    >
+    <section className="bg-no-repeat bg-top bg-blend-multiply relative">
+        <div
+            className="h-64 md:h-80 lg:h-[25rem] absolute top-0 left-0 w-full details-background banner-shadow"
+            style={{ backgroundImage: `url('${process.env.REACT_APP_IMAGE_URL}${background}')` }}
+        />
         <div className="page-container pt-[var(--header-size)] relative z-10">
             <div className="sm:w-[90%] lg:w-[70%] mx-auto">
-                <article className="grid md:grid-cols-[2fr,3fr] gap-6 pt-10 sm:pt-16 text-white">
+                <article className="grid md:grid-cols-[2fr,3fr] gap-6 pt-14 md:pt-10 sm:pt-16 text-white">
                     <img
                         src={`${process.env.REACT_APP_IMAGE_URL}${poster}`}
                         alt="Poster de Película"
@@ -57,12 +58,12 @@ const DetailsBanner = ({
                                                     (cast) => cast.profile_path
                                                 ).map(({
                                                     id,
-                                                    profile_path,
+                                                    profile_path: profilePath,
                                                     name
                                                 }) => (
                                                     <CastCard
                                                         key={id}
-                                                        image={profile_path}
+                                                        image={profilePath}
                                                         cast={name}
                                                     />
                                                 ))
@@ -82,7 +83,7 @@ const DetailsBanner = ({
                     name,
                     key
                 }) => (
-                    <TrailerSection
+                    <MovieVideo
                         key={id}
                         title={name}
                         url={key}
